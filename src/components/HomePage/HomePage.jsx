@@ -12,10 +12,10 @@ export default class HomePage extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <p className="hello">
-                            <img src={Logo} className="logo" />
+                            <img src={Logo} className="logo" alt="Logo"/>
                             НАЦИОНАЛЕН ИНСТИТУТ ПО МЕТЕОРОЛОГИЯ И ХИДРОЛОГИЯ  БАН-филиал ПЛОВДИВ
                         </p>
-                        <img src={meteo} className="meteo" />
+                        <img src={meteo} className="meteo" alt="Meteo"/>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ export default class HomePage extends Component {
                 <div className="col-md-12">
                 <br/>
                 <p className="paragraph">Хидроложки станции на територията на филиал Пловдив</p>
-                <img src={hydro} className="hydro" />
+                <img src={hydro} className="hydro" alt="Hydro"/>
                 </div>
                 </div>
             </div>

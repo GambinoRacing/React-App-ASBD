@@ -1,7 +1,5 @@
-import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import React, { Component } from 'react'; 
-import weather from '../weather/weather';
 import { NavLink } from 'react-router-dom';
 
 export default class Header extends Component {
