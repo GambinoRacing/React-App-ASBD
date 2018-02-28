@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './components/common/Header';
 import HomePage from './components/HomePage/HomePage';
-import weather from './components/weather/weather';
+import Weather from './components/Weather/Weather';
+import Hydro from './components/Hydro/Hydro';
+import ASBD from './components/ASBD/ASBD';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
@@ -18,10 +21,11 @@ class App extends Component {
                     <div className="main-content">
                         <Switch>
                             <Route exact path="/" component={HomePage} />
-                            <Route path="/weather" component={weather} />
+                            <Route path="/Weather" component={Weather} />
+                            <Route path="/Hydro" component={Hydro} />
+                            <Route path="/ASBD" component={ASBD} />
                         </Switch>
                     </div>
-       
                 </div>
             </MuiThemeProvider>
         );
