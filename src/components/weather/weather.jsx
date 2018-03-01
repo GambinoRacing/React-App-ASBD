@@ -5,9 +5,9 @@ import Api from '../../Api'
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as Recharts from 'recharts';
-import {getMeteoData} from '../../api/remote';
+import { getMeteoData } from '../../api/remote';
 
-const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar, ResponsiveContainer, LabelList } = Recharts;
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar, ResponsiveContainer, LabelList, BarChart } = Recharts;
 
 // let data = [
 //   { date: '2018-01-27', Temp: "400" , Rain: 2400, Apress: "400", Snow: 3700, WindSpeed: "400" },
@@ -44,15 +44,15 @@ export default class Weather extends Component {
 
   formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
-}
+  }
 
   handleDaysBefore(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -70,26 +70,26 @@ export default class Weather extends Component {
   }
 
 
-  async getData(date, station, days){
+  async getData(date, station, days) {
 
-    const data =  await getMeteoData(date, station, days)
+    const data = await getMeteoData(date, station, days)
 
     let castedDATA = this.castValues(data['MeteoData']);
-   this.setState({data : castedDATA})
-   console.log(this.state);
+    this.setState({ data: castedDATA })
+    console.log(this.state);
   }
 
 
 
-  castValues(data){
+  castValues(data) {
 
     let result = [];
 
-    for(var object of data){
+    for (var object of data) {
       object['Rain'] = parseFloat(object['Rain'].replace(',', '.'))
       object['Snow'] = parseFloat(object['Snow'].replace(',', '.'))
       object['Apress'] = parseFloat(object['Apress'].replace(',', '.'))
-      object['Apress'] = object['Apress']/1000;
+      object['Apress'] = object['Apress'] / 1000;
     }
 
     return data
@@ -114,7 +114,7 @@ export default class Weather extends Component {
     })
   }
 
- 
+
 
 
   setStations = (response) => {
@@ -153,7 +153,7 @@ export default class Weather extends Component {
 
 
             <div className="col-md-3">
-              <DatePicker hintText="Изберете дата" onChange={this.handleChangeDate} formatDate={this.formatDate}/>
+              <DatePicker hintText="Изберете дата" onChange={this.handleChangeDate} formatDate={this.formatDate} />
             </div>
 
             <div className="col-md-3">
@@ -167,10 +167,22 @@ export default class Weather extends Component {
           </div>
         </form>
 
-        <div className="row">
+        {/* <div className="row">
+          <div className="col-md-12">
+            <BarChart width={600} height={300} data={this.state.data}
+              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Temp" stackId="a" fill="#8884d8" />
+              <Bar dataKey="Rain" stackId="a" fill="#82ca9d" />
+            </BarChart> */}
+            <div className="row">
           <div className="col-md-12">
             <ComposedChart width={1100} height={800} data={this.state.data}>              
-              <XAxis dataKey="Date" />
+              <XAxis dataKey="Date"/>
               <YAxis />
               <Tooltip />
               <Legend />
@@ -208,7 +220,7 @@ export default class Weather extends Component {
           </div>
         </div> */}
 
-        
+
       </div>
     );
   }
