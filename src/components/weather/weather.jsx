@@ -8,15 +8,15 @@ import * as Recharts from 'recharts';
 
 const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar } = Recharts;
 
-    const data = [
-      { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-      { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-      { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
-      { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-      { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
-      { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-      { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-    ];
+const data = [
+  { name: '2018-01-27', Temp: 4000, Rain: 2400, Apress: 7400, Snow: 3700 },
+  { name: '2018-01-28', Temp: 3000, Rain: 1398, Apress: 8210, Snow: 2510 },
+  { name: '2018-01-29', Temp: 2000, Rain: 9800, Apress: 9290, Snow: 6690 },
+  { name: '2018-01-30', Temp: 2780, Rain: 3908, Apress: 7000, Snow: 4300 },
+  { name: '2018-01-31', Temp: 1890, Rain: 4800, Apress: 6181, Snow: 5281 },
+  { name: '2018-02-01', Temp: 2390, Rain: 3800, Apress: 8500, Snow: 7800 },
+  { name: '2018-02-02', Temp: 3490, Rain: 4300, Apress: 9100, Snow: 4700 },
+];
 
 export default class Weather extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class Weather extends Component {
       controllerDate: '',
       daysBefore: 1
     };
-  
+
     this.handleChangeDate = this.handleChangeDate.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -42,7 +42,7 @@ export default class Weather extends Component {
 
   handleDaysBefore(e) {
     this.setState({ [e.target.name]: e.target.value });
-}
+  }
 
   handleChangeDate = (event, date) => {
     this.setState({
@@ -106,7 +106,7 @@ export default class Weather extends Component {
     })
   }
 
- 
+
   render() {
     return (
       <div className="container">
@@ -145,40 +145,42 @@ export default class Weather extends Component {
             </div>
           </div>
         </form>
-        
+
         <div className="row">
-        <div className="col-md-12">
-        <LineChart width={800} height={400} data={data}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="name"/>
-       <YAxis yAxisId="left" />
-       <YAxis yAxisId="right" orientation="right" />
-       <CartesianGrid strokeDasharray="3 3"/>
-       <Tooltip/>
-       <Legend />
-       <Line yAxisId="left" type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-       <Line yAxisId="right" type="monotone" dataKey="uv" stroke="#82ca9d" />
-       <Line yAxisId="right" type="monotone" dataKey="amt" stroke="#ff0f0f" />
-       <Line yAxisId="right" type="monotone" dataKey="amt" stroke="#ff0f0f" />
-      </LineChart> 
-        </div>
+          <div className="col-md-12">
+            <LineChart width={800} height={400} data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+              <XAxis dataKey="name" />
+              <YAxis yAxisId="left" />
+              <YAxis yAxisId="right" orientation="right" />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              
+              <Line yAxisId="left" type="monotone" dataKey="Rain" stroke="#8884d8" activeDot={{ r: 8 }} />
+              <Line yAxisId="right" type="monotone" dataKey="Temp" stroke="#82ca9d" />
+              <Line yAxisId="right" type="monotone" dataKey="Apress" stroke="#ff0f0f" />
+              <Line yAxisId="right" type="monotone" dataKey="Apress" stroke="#ff0f0f" />
+            </LineChart>
+          </div>
         </div>
 
         <div className="row">
-        <div className="col-md-12">   
-      <ComposedChart width={600} height={400} data={data}
-            margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-          <XAxis dataKey="name"/>
-          <YAxis />
-          <Tooltip/>
-          <Legend/>
-          <CartesianGrid stroke='#f5f5f5'/>
-          <Area type='monotone' dataKey='amt' fill='#8884d8' stroke='#8884d8'/>
-          <Bar dataKey='pv' barSize={20} fill='#413ea0'/>
-          <Line type='monotone' dataKey='uv' stroke='#ff7300'/>
-       </ComposedChart>
-      </div>
-      </div>
+          <div className="col-md-12">
+            <ComposedChart width={800} height={400} data={data}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Area type='monotone' dataKey='Apress' fill='#726a64' stroke='#726a64' />
+              <Bar dataKey='Rain' barSize={20} fill='#000cff' />
+              <Bar dataKey='Snow' barSize={20} fill='#6387ff' />
+              <Line type='monotone' dataKey='Temp' stroke='#ff0000' />
+            </ComposedChart>
+          </div>
+        </div>
       </div>
     );
   }
