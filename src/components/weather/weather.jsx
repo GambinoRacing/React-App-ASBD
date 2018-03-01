@@ -5,17 +5,18 @@ import Api from '../../Api'
 import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as Recharts from 'recharts';
+import {getMeteoData} from '../../api/remote';
 
 const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar } = Recharts;
 
-const data = [
-  { name: '2018-01-27', Temp: 4000, Rain: 2400, Apress: 7400, Snow: 3700 },
-  { name: '2018-01-28', Temp: 3000, Rain: 1398, Apress: 8210, Snow: 2510 },
-  { name: '2018-01-29', Temp: 2000, Rain: 9800, Apress: 9290, Snow: 6690 },
-  { name: '2018-01-30', Temp: 2780, Rain: 3908, Apress: 7000, Snow: 4300 },
-  { name: '2018-01-31', Temp: 1890, Rain: 4800, Apress: 6181, Snow: 5281 },
-  { name: '2018-02-01', Temp: 2390, Rain: 3800, Apress: 8500, Snow: 7800 },
-  { name: '2018-02-02', Temp: 3490, Rain: 4300, Apress: 9100, Snow: 4700 },
+let data = [
+  { date: '2018-01-27', Temp: 4000, Rain: 2400, Apress: 7400, Snow: 3700, WindSpeed: 100 },
+  { date: '2018-01-28', Temp: 3000, Rain: 1398, Apress: 8210, Snow: 2510, WindSpeed: 200 },
+  { date: '2018-01-29', Temp: 2000, Rain: 9800, Apress: 9290, Snow: 6690, WindSpeed: 300 },
+  { date: '2018-01-30', Temp: 2780, Rain: 3908, Apress: 7000, Snow: 4300, WindSpeed: 400 },
+  { date: '2018-01-31', Temp: 1890, Rain: 4800, Apress: 6181, Snow: 5281, WindSpeed: 500 },
+  { date: '2018-02-01', Temp: 2390, Rain: 3800, Apress: 8500, Snow: 7800, WindSpeed: 600 },
+  { date: '2018-02-02', Temp: 3490, Rain: 4300, Apress: 9100, Snow: 4700, WindSpeed: 200 },
 ];
 
 export default class Weather extends Component {
@@ -40,6 +41,18 @@ export default class Weather extends Component {
     this.handleDaysBefore = this.handleDaysBefore.bind(this);
   }
 
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
   handleDaysBefore(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -52,9 +65,17 @@ export default class Weather extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    console.log(this.state.value)
-    console.log(this.state.controllerDate)
-    console.log(this.state.daysBefore)
+   // console.log(this.state.value)
+   // console.log(this.formatDate(this.state.controllerDate))
+   // console.log(this.state.daysBefore)
+    this.getData(this.formatDate(this.state.controllerDate), this.state.value, this.state.daysBefore)
+  }
+
+
+  async getData(date, station, days){
+
+    const data =  await getMeteoData(date, station, days)
+  // console.log(data);
   }
 
   onChange(event) {
@@ -77,12 +98,8 @@ export default class Weather extends Component {
 
   getWeather = () => {
     Api.get({
-      url: 'http://localhost:56348/api',
-      data: {
-        station: this.state.value,
-        date: '2018-01-27',
-        days: 5
-      },
+      url: `http://localhost:56348/api?date=2018-02-27&station=${this.state.stations.value}&days=${this.state.daysBefore}`,
+      
       success: this.setWeather
     })
 
@@ -90,10 +107,6 @@ export default class Weather extends Component {
 
   setWeather = (weatherData) => {
     console.log(weatherData)
-  }
-
-  formatDate(date) {
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
   setStations = (response) => {
@@ -132,7 +145,7 @@ export default class Weather extends Component {
 
 
             <div className="col-md-3">
-              <DatePicker hintText="Изберете дата" onChange={this.handleChangeDate} />
+              <DatePicker hintText="Изберете дата" onChange={this.handleChangeDate} formatDate={this.formatDate}/>
             </div>
 
             <div className="col-md-3">
@@ -150,7 +163,7 @@ export default class Weather extends Component {
           <div className="col-md-12">
             <LineChart width={800} height={400} data={data}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <XAxis dataKey="name" />
+              <XAxis dataKey="date" />
               <YAxis yAxisId="left" />
               <YAxis yAxisId="right" orientation="right" />
               <CartesianGrid strokeDasharray="3 3" />
@@ -169,7 +182,7 @@ export default class Weather extends Component {
           <div className="col-md-12">
             <ComposedChart width={800} height={400} data={data}
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-              <XAxis dataKey="name" />
+              <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
               <Legend />
@@ -178,6 +191,7 @@ export default class Weather extends Component {
               <Bar dataKey='Rain' barSize={20} fill='#000cff' />
               <Bar dataKey='Snow' barSize={20} fill='#6387ff' />
               <Line type='monotone' dataKey='Temp' stroke='#ff0000' />
+              <Line type='monotone' dataKey='WindSpeed' stroke='#00ff1a' />
             </ComposedChart>
           </div>
         </div>
