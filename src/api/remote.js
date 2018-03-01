@@ -10,7 +10,6 @@ async function getMeteoData(date, station, days) {
         }
     });
     const data = await res.json();
-    console.log(data)
   
     return data
 }
