@@ -179,48 +179,27 @@ export default class Weather extends Component {
               <Bar dataKey="Temp" stackId="a" fill="#8884d8" />
               <Bar dataKey="Rain" stackId="a" fill="#82ca9d" />
             </BarChart> */}
-            <div className="row">
+
+        <div className="row">
           <div className="col-md-12">
-            <ComposedChart width={1100} height={800} data={this.state.data}>              
-              <XAxis dataKey="Date"/>
+            <ComposedChart width={1100} height={700} data={this.state.data} stackOffset="expand">
+              <XAxis dataKey="Date" interval={3} />
               <YAxis />
               <Tooltip />
               <Legend />
               <CartesianGrid strokeDasharray="3 3" />
               <Area type='monotone' dataKey='Apress' fill='#726a64' stroke='#726a64' />
               <Bar dataKey='Rain' barSize={20} fill='#000cff'>
-              <LabelList dataKey="Rain" position="top" />
+                <LabelList dataKey="Rain" position="top" />
               </Bar>
               <Bar dataKey='Snow' barSize={20} fill='#6387ff'>
-              <LabelList dataKey="Snow" position="top" />
+                <LabelList dataKey="Snow" position="top" />
               </Bar>
               <Line type='monotone' dataKey='Temp' stroke='#ff0000' />
               <Line type='monotone' dataKey='WindSpeed' stroke='#00ff1a' />
             </ComposedChart>
           </div>
         </div>
-
-        {/* <div className="row">
-          <div className="col-md-12">
-            <LineChart width={800} height={400} data={this.state.data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <XAxis dataKey="Date" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Legend />
-              
-              <Line yAxisId="left" type="monotone" dataKey="Apress" stroke="#8884d8" activeDot={{ r: 8 }} />
-              <Line yAxisId="right" type="monotone" dataKey="Rain" stroke="#82ca9d" />
-              <Line yAxisId="right" type="monotone" dataKey="Snow" stroke="#ff0f0f" />
-              <Line yAxisId="right" type="monotone" dataKey="Temp" stroke="#ff0f0f" />
-              <Line yAxisId="right" type="monotone" dataKey="WindSpeed" stroke="#ff0f0f" />
-            </LineChart>
-          </div>
-        </div> */}
-
-
       </div>
     );
   }
