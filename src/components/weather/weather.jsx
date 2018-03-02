@@ -170,48 +170,20 @@ export default class Weather extends Component {
 
         <div className="row">
           <div className="col-md-12">
-            {/* <BarChart width={600} height={300} data={this.state.data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <XAxis dataKey="Date" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Legend />
-              <ReferenceLine y={0} stroke='#000' />
-              <Bar dataKey="Temp" fill="#8884d8"  />
-              <Bar dataKey="WindSpeed" fill="#82ca9d" />
-            </BarChart> */}
-
-            {/* Баровете*/}
-            {/*
-            <BarChart width={1100} height={500} data={this.state.data}>
-              <XAxis dataKey="Date" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="Temp" stackId="a" fill="#ce0a10" />
-              <Bar dataKey="Rain" stackId="a" fill="#1530b5" />
-              <Bar dataKey="Snow" stackId="a" fill="#4c68ef" />
-              <Bar dataKey="Apress" stackId="a" fill="#acaeb7" />
-              <Bar dataKey="WindSpeed" stackId="a" fill="#ffb200" />
-            </BarChart> */}
-
-            {/* Моята*/}
-
-
             <ComposedChart width={800} height={500} data={this.state.data}
-              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              margin={{ top: 20, right: 0, bottom: 0, left: 0 }}>
               <XAxis dataKey="Date" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <CartesianGrid stroke='red' strokeDasharray="15 15" fill='#85adad'/>
-              <Area type='monotone' dataKey='Apress' fill='#ff4d4d' stroke='#ff4d4d' />
+              <CartesianGrid stroke='#696c72' strokeDasharray="15 15" fill='#dce1ea'/>
+              <Area type='monotone' dataKey='Apress' fill='#8592ad' stroke='#8592ad' />
               <Bar dataKey='Rain' barSize={20} fill='#0000cc' />
               <Bar dataKey='Snow' barSize={20} fill='#4da6ff' />
-              <Line type='monotone' dataKey='Temp' stroke='#ff0000' />
-              <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />
+              {/*<Line type='monotone' dataKey='Temp' stroke='#ff0000' />
+              <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />*/}
+              <Line type='linear' dataKey='Temp' stroke='#ff0000' strokeWidth={3} /> 
+              <Line type='linear' dataKey='WindSpeed' stroke='#c7ff00' strokeWidth={3} /> 
             </ComposedChart>
           </div>
         </div>
@@ -219,11 +191,4 @@ export default class Weather extends Component {
     );
   }
 }
-
-// ReactDOM.render(
-//   <LineBarAreaComposedChart />,
-//   document.getElementById('container')
-// );
-
-
 
