@@ -9,6 +9,7 @@ import { getMeteoData } from '../../api/remote';
 
 const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar, ResponsiveContainer, LabelList, BarChart, AreaChart, ReferenceLine } = Recharts;
 
+
 // let data = [
 //   { date: '2018-01-27', Temp: "400" , Rain: 2400, Apress: "400", Snow: 3700, WindSpeed: "400" },
 //   { date: '2018-01-28', Temp: "400", Rain: 1398, Apress: "400", Snow: 2510, WindSpeed: 200 },
@@ -79,8 +80,6 @@ export default class Weather extends Component {
     console.log(this.state);
   }
 
-
-
   castValues(data) {
 
     let result = [];
@@ -91,7 +90,7 @@ export default class Weather extends Component {
       object['Temp'] = parseFloat(object['Temp'].replace(',', '.'))
       object['WindSpeed'] = parseFloat(object['WindSpeed'].replace(',', '.'))
       object['Apress'] = parseFloat(object['Apress'].replace(',', '.'))
-      object['Apress'] = object['Apress'] / 1000;
+      object['Apress'] = object['Apress'] / 10000;
     }
 
     return data
@@ -115,9 +114,6 @@ export default class Weather extends Component {
     })
   }
 
-
-
-
   setStations = (response) => {
     let options = response[0].Stations.map((option) => {
       return { value: option.value, label: option.value + ': ' + option.label }
@@ -127,7 +123,6 @@ export default class Weather extends Component {
       options
     })
   }
-
 
   render() {
     return (
@@ -170,21 +165,26 @@ export default class Weather extends Component {
 
         <div className="row">
           <div className="col-md-12">
-            <ComposedChart width={800} height={500} data={this.state.data}
-              margin={{ top: 20, right: 0, bottom: 0, left: 0 }}>
-              <XAxis dataKey="Date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <CartesianGrid stroke='#696c72' strokeDasharray="15 15" fill='#dce1ea'/>
-              <Area type='monotone' dataKey='Apress' fill='#8592ad' stroke='#8592ad' />
-              <Bar dataKey='Rain' barSize={20} fill='#0000cc' />
-              <Bar dataKey='Snow' barSize={20} fill='#4da6ff' />
-              {/*<Line type='monotone' dataKey='Temp' stroke='#ff0000' />
+            <div className="chartContainer">
+              <ResponsiveContainer width='100%' aspect={8.0 / 5.0}>
+                <ComposedChart data={this.state.data}
+                  margin={{ top: 15, right: 55, bottom: 0, left: 0 }}
+                  padding={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+                  <XAxis Interval={2} dataKey="Date" />
+                  <YAxis tickCount={20} />
+                  <Tooltip />
+                  <Legend />
+                  <CartesianGrid stroke='#cfd2d6' strokeDasharray="3 3" fill='white' />
+                  <Area type='monotone' dataKey='Apress' fill='#8592ad' stroke='#8592ad' />
+                  <Line type='linear' dataKey='Temp' stroke='#f2742b' strokeWidth={3} />
+                  <Bar dataKey='Rain' barSize={10} fill='#5394b2' />
+                  <Bar dataKey='Snow' barSize={10} fill='#9658a3' />
+                  <Line type='linear' dataKey='WindSpeed' stroke='#2da836' strokeWidth={3} />
+                  {/*<Line type='monotone' dataKey='Temp' stroke='#ff0000' />
               <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />*/}
-              <Line type='linear' dataKey='Temp' stroke='#ff0000' strokeWidth={3} /> 
-              <Line type='linear' dataKey='WindSpeed' stroke='#c7ff00' strokeWidth={3} /> 
-            </ComposedChart>
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
       </div>
