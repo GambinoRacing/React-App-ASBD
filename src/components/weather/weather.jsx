@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import * as Recharts from 'recharts';
 import { getMeteoData } from '../../api/remote';
 
-const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar, ResponsiveContainer, LabelList, BarChart } = Recharts;
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area, Bar, ResponsiveContainer, LabelList, BarChart, AreaChart, ReferenceLine } = Recharts;
 
 // let data = [
 //   { date: '2018-01-27', Temp: "400" , Rain: 2400, Apress: "400", Snow: 3700, WindSpeed: "400" },
@@ -88,12 +88,13 @@ export default class Weather extends Component {
     for (var object of data) {
       object['Rain'] = parseFloat(object['Rain'].replace(',', '.'))
       object['Snow'] = parseFloat(object['Snow'].replace(',', '.'))
+      object['Temp'] = parseFloat(object['Temp'].replace(',', '.'))
+      object['WindSpeed'] = parseFloat(object['WindSpeed'].replace(',', '.'))
       object['Apress'] = parseFloat(object['Apress'].replace(',', '.'))
       object['Apress'] = object['Apress'] / 1000;
     }
 
     return data
-
   }
 
   onChange(event) {
@@ -167,36 +168,50 @@ export default class Weather extends Component {
           </div>
         </form>
 
-        {/* <div className="row">
-          <div className="col-md-12">
-            <BarChart width={600} height={300} data={this.state.data}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="Temp" stackId="a" fill="#8884d8" />
-              <Bar dataKey="Rain" stackId="a" fill="#82ca9d" />
-            </BarChart> */}
-
         <div className="row">
           <div className="col-md-12">
-            <ComposedChart width={1100} height={700} data={this.state.data} stackOffset="expand">
-              <XAxis dataKey="Date" interval={3} />
+            {/* <BarChart width={600} height={300} data={this.state.data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+              <XAxis dataKey="Date" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <ReferenceLine y={0} stroke='#000' />
+              <Bar dataKey="Temp" fill="#8884d8"  />
+              <Bar dataKey="WindSpeed" fill="#82ca9d" />
+            </BarChart> */}
+
+            {/* Баровете*/}
+            {/*
+            <BarChart width={1100} height={500} data={this.state.data}>
+              <XAxis dataKey="Date" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="Temp" stackId="a" fill="#ce0a10" />
+              <Bar dataKey="Rain" stackId="a" fill="#1530b5" />
+              <Bar dataKey="Snow" stackId="a" fill="#4c68ef" />
+              <Bar dataKey="Apress" stackId="a" fill="#acaeb7" />
+              <Bar dataKey="WindSpeed" stackId="a" fill="#ffb200" />
+            </BarChart> */}
+
+            {/* Моята*/}
+
+
+            <ComposedChart width={800} height={500} data={this.state.data}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <XAxis dataKey="Date" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Area type='monotone' dataKey='Apress' fill='#726a64' stroke='#726a64' />
-              <Bar dataKey='Rain' barSize={20} fill='#000cff'>
-                <LabelList dataKey="Rain" position="top" />
-              </Bar>
-              <Bar dataKey='Snow' barSize={20} fill='#6387ff'>
-                <LabelList dataKey="Snow" position="top" />
-              </Bar>
+              <CartesianGrid stroke='red' strokeDasharray="15 15" fill='#85adad'/>
+              <Area type='monotone' dataKey='Apress' fill='#ff4d4d' stroke='#ff4d4d' />
+              <Bar dataKey='Rain' barSize={20} fill='#0000cc' />
+              <Bar dataKey='Snow' barSize={20} fill='#4da6ff' />
               <Line type='monotone' dataKey='Temp' stroke='#ff0000' />
-              <Line type='monotone' dataKey='WindSpeed' stroke='#00ff1a' />
+              <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />
             </ComposedChart>
           </div>
         </div>
