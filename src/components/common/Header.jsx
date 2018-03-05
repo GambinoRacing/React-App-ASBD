@@ -62,7 +62,7 @@ export default class Header extends Component {
               </DropdownMenu>
             </Dropdown>
             <NavItem>
-              <NavLink href="#">Link</NavLink>
+              <NavLink href="/Meteogram">Метеограма</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#">Another Link</NavLink>
