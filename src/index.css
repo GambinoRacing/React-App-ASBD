@@ -33,6 +33,10 @@ body {
   right: 0;
 }
 
+.basicActivities{
+  font-weight: bold; 
+}
+
 .paragraph { 
 text-align: center;
 font-size: 30px;
@@ -96,7 +100,7 @@ font-size: 30px;
 
 .vec {
   width: 100%;
-  height: 250px;
+  height: 275px;
 }
 
 .chartContainer {

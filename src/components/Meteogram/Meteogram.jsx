@@ -175,13 +175,12 @@ export default class Meteogram extends Component {
                   <YAxis tickCount={20} />
                   <Tooltip />
                   <Legend />
-                  <CartesianGrid stroke='#cfd2d6' strokeDasharray="3 3" fill='white' />
+                  <CartesianGrid stroke='black' strokeDasharray="3 3" fill='white' />
                   <Area type='monotone' dataKey='Apress' fill='#bfffee' stroke='#00d8f9' />
-                  <Area type='monotone' dataKey='Humidity' fill='#cff2b5' stroke='#3ed84e'/>                 
-                  <Line type='linear' dataKey='WindSpeed' stroke='#ff5a14' strokeWidth={3} />
-                  <Bar dataKey='Rain' barSize={20} fill='#2376fc' />
-                  <Line type='linear' dataKey='Temp' stroke='#ff0000' strokeWidth={3} />    
-                  
+                  <Area type='monotone' dataKey='Humidity' fill='#cff2b5' stroke='#3ed84e'/> 
+                  <Bar dataKey='Rain' barSize={20} fill='#2376fc' />                 
+                  <Line type='linear' dataKey='WindSpeed' stroke='#ff5a14' strokeWidth={2} />
+                  <Line type='linear' dataKey='Temp' stroke='#ff0000' strokeWidth={2} />       
                   {/*<Line type='monotone' dataKey='Temp' stroke='#ff0000' />
                   <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />*/}
                 </ComposedChart>
