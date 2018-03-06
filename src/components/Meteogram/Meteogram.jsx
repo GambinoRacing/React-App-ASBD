@@ -20,6 +20,7 @@ const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedC
 //   { date: '2018-02-02', Temp: 3490, Rain: 4300, Apress: 9100, Snow: 4700, WindSpeed: 200 },
 // ];
 
+
 export default class Meteogram extends Component {
   constructor(props) {
     super(props);
@@ -85,12 +86,12 @@ export default class Meteogram extends Component {
     let result = [];
 
     for (var object of data) {
+      object['Humidity'] = parseFloat(object['Humidity'].replace(',', '.'))
       object['Rain'] = parseFloat(object['Rain'].replace(',', '.'))
-      object['Snow'] = parseFloat(object['Snow'].replace(',', '.'))
       object['Temp'] = parseFloat(object['Temp'].replace(',', '.'))
       object['WindSpeed'] = parseFloat(object['WindSpeed'].replace(',', '.'))
       object['Apress'] = parseFloat(object['Apress'].replace(',', '.'))
-      object['Apress'] = object['Apress'] / 10000;
+      object['Apress'] = object['Apress'] / 1000;
     }
 
     return data
@@ -175,13 +176,14 @@ export default class Meteogram extends Component {
                   <Tooltip />
                   <Legend />
                   <CartesianGrid stroke='#cfd2d6' strokeDasharray="3 3" fill='white' />
-                  <Area type='monotone' dataKey='Apress' fill='#8592ad' stroke='#8592ad' />
-                  <Line type='linear' dataKey='Temp' stroke='#f2742b' strokeWidth={3} />
-                  <Bar dataKey='Rain' barSize={10} fill='#5394b2' />
-                  <Bar dataKey='Snow' barSize={10} fill='#9658a3' />
-                  <Line type='linear' dataKey='WindSpeed' stroke='#2da836' strokeWidth={3} />
+                  <Area type='monotone' dataKey='Apress' fill='#bfffee' stroke='#00d8f9' />
+                  <Area type='monotone' dataKey='Humidity' fill='#cff2b5' stroke='#3ed84e'/>                 
+                  <Line type='linear' dataKey='WindSpeed' stroke='#ff5a14' strokeWidth={3} />
+                  <Bar dataKey='Rain' barSize={20} fill='#2376fc' />
+                  <Line type='linear' dataKey='Temp' stroke='#ff0000' strokeWidth={3} />    
+                  
                   {/*<Line type='monotone' dataKey='Temp' stroke='#ff0000' />
-              <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />*/}
+                  <Line type='monotone' dataKey='WindSpeed' stroke='#cc3300' />*/}
                 </ComposedChart>
               </ResponsiveContainer>
             </div>
