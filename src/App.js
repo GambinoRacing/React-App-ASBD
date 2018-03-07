@@ -6,6 +6,7 @@ import Weather from './components/Weather/Weather';
 import Hydro from './components/Hydro/Hydro';
 import ASBD from './components/ASBD/ASBD';
 import Meteogram from './components/Meteogram/Meteogram';
+import RainMap from './components/RainMap/RainMap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Footer from './components/Footer/Footer';
 
@@ -26,6 +27,7 @@ class App extends Component {
                             <Route path="/Hydro" component={Hydro} />
                             <Route path="/ASBD" component={ASBD} />
                             <Route path="/Meteogram" component={Meteogram} />
+                            <Route path="/RainMap" component={RainMap} />
                         </Switch>
                     </div>
                     <Footer />

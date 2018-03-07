@@ -8,12 +8,9 @@ import klimatichni from '../../images/klimatichni.jpg';
 
 export default class Weather extends Component {
 
-
   render() {
     return (
       <div className="container">
-
-
         <div className="row">
           <div className="col-md-12">
             <p className="hello">
@@ -57,15 +54,15 @@ export default class Weather extends Component {
               <li>Община Девин</li>
               <li>ВПК"Напредък" гр.Кричим</li>
               <li>"Ермакс" ООД</li>
-              </ul>
+            </ul>
           </div>
           <div className="col-md-6">
-          <p className="basicActivities">Филиал Пловдив обслужва 40 метеорологични станции</p>
-          <p className="basicActivities">Синоптични станции на територията на филиал Пловдив:</p>
-          <img src={synoptichni} className="synoptichni" alt="synoptichni" />
-          <br/> <br/>
-          <p className="basicActivities">Климатични станции:</p>
-          <img src={klimatichni} className="synoptichni" alt="synoptichni" />
+            <p className="basicActivities">Филиал Пловдив обслужва 40 метеорологични станции</p>
+            <p className="basicActivities">Синоптични станции на територията на филиал Пловдив:</p>
+            <img src={synoptichni} className="synoptichni" alt="synoptichni" />
+            <br /> <br />
+            <p className="basicActivities">Климатични станции:</p>
+            <img src={klimatichni} className="synoptichni" alt="synoptichni" />
           </div>
         </div>
       </div>

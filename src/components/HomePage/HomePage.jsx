@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { CardFooter } from 'reactstrap';
 import Logo from '../../images/logo.bmp';
 import meteo from '../../images/meteo.jpg';
 import vec from '../../images/vec.jpg';

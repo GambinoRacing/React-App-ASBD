@@ -1,7 +1,7 @@
 import 'react-select/dist/react-select.css';
 import React, { Component } from 'react';
 //За bootstrap NavLink import { NavLink } from 'react-router-dom';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink, CardFooter } from 'reactstrap';
+import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 
 
 export default class Header extends Component {
@@ -63,6 +63,9 @@ export default class Header extends Component {
             </Dropdown>
             <NavItem>
               <NavLink href="/Meteogram">Метеограма</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/RainMap">Карта с Валежи</NavLink>
             </NavItem>
           </Nav>
         </div>
