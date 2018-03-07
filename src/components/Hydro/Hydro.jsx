@@ -57,12 +57,10 @@ export default class Hydro extends Component {
           </div>
         </div>
 
-
-
         <div className="row">
           <div className="col-md-6">
-            <br/>
-            <br/>
+            <br />
+            <br />
             <p className="basicActivities">Сектор "Хидрология" извършва услуги със следната режимна информация :</p>
             <ul>
               <span className="basicActivities">Среднодневни:</span>
@@ -86,21 +84,19 @@ export default class Hydro extends Component {
           </div>
 
           <div className="col-md-6">
-          <br/>
-            <br/>
+            <br />
+            <br />
             <img src={grafika} className="srednodnevni" alt="srednodnevni" />
           </div>
         </div>
         <div className="row">
-                    <div className="col-md-12">
-                        <br />
-                        <p className="paragraph">Хидроложки станции на територията на филиал Пловдив</p>
-                        <img src={hydro} className="hydro" alt="Hydro" />
-                    </div>
-                </div>
+          <div className="col-md-12">
+            <br />
+            <p className="paragraph">Хидроложки станции на територията на филиал Пловдив</p>
+            <img src={hydro} className="hydro" alt="Hydro" />
+          </div>
+        </div>
       </div>
-
-      
     );
   }
 }

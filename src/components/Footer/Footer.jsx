@@ -1,14 +1,17 @@
 import React from 'react';
 import { Card, CardFooter } from 'reactstrap';
 
-const Footer = (props) => {
+const Footer = () => {
   return (
+    <div className="container">
     <div className="footer">
-      <Card>
+      {/* <Card>
         <CardFooter>Footer</CardFooter>
-      </Card>
+      </Card> */}
+      <footer>Copyright © 2018, НИМХ.    Всички права запазени. Само за лично ползване! Всяка употреба на данни от Българския сървър за времето в средствата за масова информация, Интернет или с търговска цел без изричен договор е забранена!</footer>
+      </div>
     </div>
   );
 };
 
-export default Example;
+export default Footer;
