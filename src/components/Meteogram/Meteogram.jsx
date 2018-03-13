@@ -19,7 +19,6 @@ const { Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Area,
 //   { date: '2018-02-02', Temp: 3490, Rain: 4300, Apress: 9100, Snow: 4700, WindSpeed: 200 },
 // ];
 
-
 export default class Meteogram extends Component {
   constructor(props) {
     super(props);
@@ -114,7 +113,7 @@ export default class Meteogram extends Component {
 
   setStations = (response) => {
     let options = response[0].Stations.map((option) => {
-      return { value: option.value, label: option.value + ': ' + option.label }
+      return { value: option.value, label: option.value + ' - ' + option.label }
     })
 
     this.setState({
@@ -144,7 +143,6 @@ export default class Meteogram extends Component {
                 placeholder="Изберете станция"
               />
             </div>
-
 
             <div className="col-md-3">
               <DatePicker hintText="Изберете дата" onChange={this.handleChangeDate} formatDate={this.formatDate} />
