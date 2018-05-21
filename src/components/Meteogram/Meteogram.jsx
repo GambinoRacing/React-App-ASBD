@@ -80,7 +80,6 @@ export default class Meteogram extends Component {
   }
 
   castValues(data) {
-
     for (var object of data) {
       object['Humidity'] = parseFloat(object['Humidity'].replace(',', '.'))
       object['Rain'] = parseFloat(object['Rain'].replace(',', '.'))

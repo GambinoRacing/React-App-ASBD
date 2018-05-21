@@ -7,6 +7,7 @@ import Hydro from './components/Hydro/Hydro';
 import ASBD from './components/ASBD/ASBD';
 import Meteogram from './components/Meteogram/Meteogram';
 import RainMap from './components/RainMap/RainMap';
+import HydroAnalyze from './components/HydroAnalyze/HydroAnalyze';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Footer from './components/Footer/Footer';
 
@@ -14,7 +15,6 @@ class App extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <MuiThemeProvider>
@@ -28,11 +28,12 @@ class App extends Component {
                             <Route path="/ASBD" component={ASBD} />
                             <Route path="/Meteogram" component={Meteogram} />
                             <Route path="/RainMap" component={RainMap} />
+                            <Route path="/HydroAnalyze" component={HydroAnalyze} />
                         </Switch>
                     </div>
                     <Footer />
                 </div>
-            
+
             </MuiThemeProvider>
         );
     }

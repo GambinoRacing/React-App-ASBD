@@ -67,6 +67,9 @@ export default class Header extends Component {
             <NavItem>
               <NavLink href="/RainMap">Карта с Валежи</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/HydroAnalyze">Хидрограма</NavLink>
+            </NavItem>
           </Nav>
         </div>
       </div>

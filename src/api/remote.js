@@ -15,3 +15,18 @@ async function getMeteoData(date, station, days) {
 }
 
 export {getMeteoData}
+
+async function getStations(station) {
+  
+    const res = await fetch(host + `api?hydro`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        }
+    });
+    const resultStations = await res.json();
+  
+    return resultStations
+}
+
+export {getStations}
